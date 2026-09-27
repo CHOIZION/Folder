@@ -1,0 +1,40 @@
+{
+  "name": "heart",
+  "version": "1.4.2",
+  "description": "HEART local media library and remote controller",
+  "type": "module",
+  "scripts": {
+    "dev": "vite dev --config heart.vite.config.js --configLoader native",
+    "build": "vite build --config heart.vite.config.js --configLoader native",
+    "preview": "vite preview --config heart.vite.config.js --configLoader native",
+    "test": "node --test tests/*.test.mjs",
+    "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+    "check:rust": "cargo fmt --manifest-path src-tauri/Cargo.toml -- --check && cargo clippy --manifest-path src-tauri/Cargo.toml --all-targets -- -D warnings",
+    "test:rust": "cargo test --manifest-path src-tauri/Cargo.toml",
+    "verify": "npm run check:public && npm test && npm run check && npm run check:rust && npm run test:rust",
+    "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+    "tauri": "tauri",
+    "check:public": "node scripts/check-public-source.mjs"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "@tauri-apps/api": "^2",
+    "@tauri-apps/plugin-opener": "^2"
+  },
+  "devDependencies": {
+    "@sveltejs/adapter-static": "^3.0.6",
+    "@sveltejs/kit": "^2.9.0",
+    "@sveltejs/vite-plugin-svelte": "^5.0.0",
+    "svelte": "^5.0.0",
+    "svelte-check": "^4.0.0",
+    "typescript": "~5.6.2",
+    "vite": "^6.0.3",
+    "@tauri-apps/cli": "^2"
+  },
+  "engines": {
+    "node": ">=24"
+  },
+  "overrides": {
+    "cookie": "^0.7.2"
+  }
+}
